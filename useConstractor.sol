@@ -2,16 +2,20 @@
 pragma solidity ^0.8.15;
 
 contract Wallet {
-    address sender;
-    uint valueSet;
+
+    PayemntReceived public payment;
 
     function payContract() public payable {
-        sender = msg.sender;
-        valueSet = msg.value;
+        payment = new PayemntReceived (msg.sender, msg.value);
     }
 }
 
-contract paymentReceived {
+contract PayemntReceived {
     address public from;
     uint public amt;
+
+    constructor(address _from, uint _amt){
+        from = _from;
+        amt = _amt;
+    }
 }
